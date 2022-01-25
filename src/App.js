@@ -8,24 +8,25 @@ function App() {
   const [scorePlayerOne, setScorePlayerOne] = useState(0);
   const [scorePlayerTwo, setScorePlayerTwo] = useState(0);
 
-  const [gameScore, setGameScore] = useState('The game is about to begin!! Its love-all ');
+  const [gameMessage, setGameMessage] = useState('The game is about to begin!!');
+  const [gameScore, setGameScore] = useState('');
 
-  const incrementScoreP1 = () => { setScorePlayerOne(scorePlayerOne + 1); gameMessage(scorePlayerOne + 1, scorePlayerTwo); };
-  const incrementScoreP2 = () => { setScorePlayerTwo(scorePlayerTwo + 1); gameMessage(scorePlayerOne, scorePlayerTwo + 1); };
+  const incrementScoreP1 = () => { setScorePlayerOne(scorePlayerOne + 1); gameBoard(scorePlayerOne + 1, scorePlayerTwo, playerOne, playerTwo); };
+  const incrementScoreP2 = () => { setScorePlayerTwo(scorePlayerTwo + 1); gameBoard(scorePlayerOne, scorePlayerTwo + 1, playerOne, playerTwo); };
 
-  const gameMessage = (s1, s2) => {
+  const gameBoard = (s1, s2, p1, p2) => {
     if (s1 > 3 || s2 > 3) {
       if (s1 === s2 + 1)
-        setGameScore('Player One is at Advantage');
+        setGameMessage('Player One is at Advantage');
       if (s2 === s1 + 1)
-        setGameScore('Player Two is at Advantage');
+        setGameMessage('Player Two is at Advantage');
       if (s1 >= s2 + 2)
-        setGameScore('Player One is the Winner');
+        setGameMessage('Player One is the Winner');
       if (s2 >= s1 + 2)
-        setGameScore('Player Two is the Winner');
+        setGameMessage('Player Two is the Winner');
     }
     if (s1 > 3 && s1 === s2)
-      setGameScore('Deuce');
+      setGameMessage('Deuce');
   };
 
   return (
@@ -42,6 +43,9 @@ function App() {
       <div>
         <button onClick={incrementScoreP1}>Score for {playerOne === '' ? 'Player One' : playerOne} : {scorePlayerOne} </button>
         <button onClick={incrementScoreP2}>Score for {playerTwo === '' ? 'Player Two' : playerTwo} : {scorePlayerTwo} </button>
+      </div>
+      <div>
+        <label> {gameMessage} </label>
       </div>
       <div>
         <label> {gameScore} </label>
