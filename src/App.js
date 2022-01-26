@@ -15,6 +15,9 @@ function App() {
   const incrementScoreP2 = () => { setScorePlayerTwo(scorePlayerTwo + 1); gameBoard(scorePlayerOne, scorePlayerTwo + 1); };
 
   const gameBoard = (s1, s2) => {
+    if (gameMessage === 'The game is about to begin!!')
+      setGameMessage('This is going to be interesting...');
+      
     if (s1 > 3 || s2 > 3) {
       if (s1 === s2 + 1)
         setGameMessage('Player One is at Advantage');
@@ -27,7 +30,7 @@ function App() {
     }
     if (s1 > 3 && s1 === s2)
       setGameMessage('Deuce');
-      
+
     message(s1, s2);
   };
 
@@ -49,13 +52,14 @@ function App() {
 
   return (
     <div className="App-header">
-      <h1> Tennis Kata </h1>
+      <h1> Tennis Scores </h1>
+      <p> Click on Buttons below to update the scores </p>
       <div>
-        <label htmlFor="player1">Name Of Player 1</label>
+        <label htmlFor="player1">Name Of Player 1    </label>
         <input type="text" id="player1" size="25" onChange={e => setPlayerOne(e.target.value)} />
       </div>
       <div>
-        <label htmlFor="player2">Name Of Player 2</label>
+        <label htmlFor="player2">Name Of Player 2    </label>
         <input type="text" id="player2" size="25" onChange={e => setPlayerTwo(e.target.value)} />
       </div>
       <div>
@@ -68,7 +72,6 @@ function App() {
       <div>
         <label> {gameScore} </label>
       </div>
-
     </div>
 
   );
