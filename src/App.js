@@ -41,8 +41,8 @@ function App() {
         <input type="text" id="player2" size="25" onChange={e => setPlayerTwo(e.target.value)} />
       </div>
       <div>
-        <button onClick={incrementScoreP1}>Score for {playerOne === '' ? 'Player One' : playerOne} : {scorePlayerOne} </button>
-        <button onClick={incrementScoreP2}>Score for {playerTwo === '' ? 'Player Two' : playerTwo} : {scorePlayerTwo} </button>
+        <button data-testid ='button1' onClick={incrementScoreP1}>Score for {playerOne === '' ? 'Player One' : playerOne} : {scorePlayerOne} </button>
+        <button data-testid ='button2' onClick={incrementScoreP2}>Score for {playerTwo === '' ? 'Player Two' : playerTwo} : {scorePlayerTwo} </button>
       </div>
       <div>
         <label> {gameMessage} </label>
