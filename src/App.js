@@ -23,10 +23,16 @@ function App() {
         setGameMessage('Player One is at Advantage');
       if (s2 === s1 + 1)
         setGameMessage('Player Two is at Advantage');
-      if (s1 >= s2 + 2)
+      if (s1 >= s2 + 2) {
         setGameMessage('Player One is the Winner');
-      if (s2 >= s1 + 2)
+        document.getElementById('button1').disabled = true;
+        document.getElementById('button2').disabled = true;
+      }
+      if (s2 >= s1 + 2) {
         setGameMessage('Player Two is the Winner');
+        document.getElementById('button1').disabled = true;
+        document.getElementById('button2').disabled = true;
+      }
     }
     if (s1 > 3 && s1 === s2)
       setGameMessage('Deuce');
@@ -63,8 +69,8 @@ function App() {
         <input type="text" id="player2" size="25" onChange={e => setPlayerTwo(e.target.value)} />
       </div>
       <div>
-        <button data-testid='button1' onClick={incrementScoreP1}>Score for {playerOne === '' ? 'Player One' : playerOne} : {scorePlayerOne} </button>
-        <button data-testid='button2' onClick={incrementScoreP2}>Score for {playerTwo === '' ? 'Player Two' : playerTwo} : {scorePlayerTwo} </button>
+        <button data-testid='button1' id='button1' onClick={incrementScoreP1}>Score for {playerOne === '' ? 'Player One' : playerOne} : {scorePlayerOne} </button>
+        <button data-testid='button2' id='button2' onClick={incrementScoreP2}>Score for {playerTwo === '' ? 'Player Two' : playerTwo} : {scorePlayerTwo} </button>
       </div>
       <div>
         <label> {gameMessage} </label>
