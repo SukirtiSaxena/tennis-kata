@@ -62,7 +62,7 @@ function App() {
   return (
     <div className="App-header">
       <h1> Tennis Scores </h1>
-      <p> Fill up the players name and click on buttons below to update the scores. </p>
+      <p> Fill up the player names and click on buttons below to update the scores. </p>
       <div>
         <label htmlFor="player1">Name Of Player 1    </label>
         <input type="text" id="player1" size="25" onChange={e => setPlayerOne(e.target.value)} />
