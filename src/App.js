@@ -25,19 +25,22 @@ function App() {
         setGameMessage('Player Two is at Advantage');
       if (s1 >= s2 + 2) {
         setGameMessage('Player One is the Winner');
-        document.getElementById('button1').disabled = true;
-        document.getElementById('button2').disabled = true;
+        disableButtons();
       }
       if (s2 >= s1 + 2) {
         setGameMessage('Player Two is the Winner');
-        document.getElementById('button1').disabled = true;
-        document.getElementById('button2').disabled = true;
+        disableButtons();
       }
     }
     if (s1 > 3 && s1 === s2)
       setGameMessage('Deuce');
 
     message(s1, s2);
+  };
+
+  const disableButtons = () => {
+    document.getElementById('button1').disabled = true;
+    document.getElementById('button2').disabled = true;
   };
 
   const message = (s1, s2) => {
