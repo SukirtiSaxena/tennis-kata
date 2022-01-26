@@ -17,7 +17,7 @@ function App() {
   const gameBoard = (s1, s2) => {
     if (gameMessage === 'The game is about to begin!!')
       setGameMessage('This is going to be interesting...');
-      
+
     if (s1 > 3 || s2 > 3) {
       if (s1 === s2 + 1)
         setGameMessage('Player One is at Advantage');
@@ -53,7 +53,7 @@ function App() {
   return (
     <div className="App-header">
       <h1> Tennis Scores </h1>
-      <p> Click on Buttons below to update the scores </p>
+      <p> Fill up the players name and click on buttons below to update the scores. </p>
       <div>
         <label htmlFor="player1">Name Of Player 1    </label>
         <input type="text" id="player1" size="25" onChange={e => setPlayerOne(e.target.value)} />
