@@ -9,12 +9,12 @@ function App() {
   const [scorePlayerTwo, setScorePlayerTwo] = useState(0);
 
   const [gameMessage, setGameMessage] = useState('The game is about to begin!!');
-  const [gameScore, setGameScore] = useState('');
+  const [gameScore, setGameScore] = useState('love-all');
 
-  const incrementScoreP1 = () => { setScorePlayerOne(scorePlayerOne + 1); gameBoard(scorePlayerOne + 1, scorePlayerTwo, playerOne, playerTwo); };
-  const incrementScoreP2 = () => { setScorePlayerTwo(scorePlayerTwo + 1); gameBoard(scorePlayerOne, scorePlayerTwo + 1, playerOne, playerTwo); };
+  const incrementScoreP1 = () => { setScorePlayerOne(scorePlayerOne + 1); gameBoard(scorePlayerOne + 1, scorePlayerTwo); };
+  const incrementScoreP2 = () => { setScorePlayerTwo(scorePlayerTwo + 1); gameBoard(scorePlayerOne, scorePlayerTwo + 1); };
 
-  const gameBoard = (s1, s2, p1, p2) => {
+  const gameBoard = (s1, s2) => {
     if (s1 > 3 || s2 > 3) {
       if (s1 === s2 + 1)
         setGameMessage('Player One is at Advantage');
@@ -27,6 +27,24 @@ function App() {
     }
     if (s1 > 3 && s1 === s2)
       setGameMessage('Deuce');
+      
+    message(s1, s2);
+  };
+
+  const message = (s1, s2) => {
+    const scoring = {
+      0: 'love',
+      1: '15',
+      2: '30',
+      3: '40'
+    };
+
+    (s1 <= 3 && s2 <= 3) ?
+      ((s1 === s2) ?
+        setGameScore(scoring[s1] + '- All') :
+        setGameScore(scoring[s1] + '-' + scoring[s2])) :
+      setGameScore('');
+
   };
 
   return (
@@ -41,8 +59,8 @@ function App() {
         <input type="text" id="player2" size="25" onChange={e => setPlayerTwo(e.target.value)} />
       </div>
       <div>
-        <button data-testid ='button1' onClick={incrementScoreP1}>Score for {playerOne === '' ? 'Player One' : playerOne} : {scorePlayerOne} </button>
-        <button data-testid ='button2' onClick={incrementScoreP2}>Score for {playerTwo === '' ? 'Player Two' : playerTwo} : {scorePlayerTwo} </button>
+        <button data-testid='button1' onClick={incrementScoreP1}>Score for {playerOne === '' ? 'Player One' : playerOne} : {scorePlayerOne} </button>
+        <button data-testid='button2' onClick={incrementScoreP2}>Score for {playerTwo === '' ? 'Player Two' : playerTwo} : {scorePlayerTwo} </button>
       </div>
       <div>
         <label> {gameMessage} </label>
